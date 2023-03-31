@@ -253,7 +253,7 @@
             <autoVersionSubmodules>true</autoVersionSubmodules>
             <goals>deploy</goals>
             <mavenExecutorId>forked-path</mavenExecutorId>
-            <releaseProfiles>buildsupport-release</releaseProfiles>
+            <releaseProfiles>maveniverse-release</releaseProfiles>
             <useReleaseProfile>false</useReleaseProfile>
             <tagNameFormat>release-@{project.version}</tagNameFormat>
           </configuration>
