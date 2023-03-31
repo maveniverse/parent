@@ -1,0 +1,614 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>eu.maveniverse.maven.parent</groupId>
+  <artifactId>parent</artifactId>
+
+  <version>1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <name>${project.groupId}:${project.artifactId}</name>
+
+  <description>Common Maven parent.</description>
+
+  <url>https://maveniverse.eu/</url>
+
+  <organization>
+    <name>Maveniverse Team</name>
+    <url>https://maveniverse.eu</url>
+  </organization>
+
+  <licenses>
+    <license>
+      <name>EPLv2</name>
+      <url>https://www.eclipse.org/legal/epl-v20.html</url>
+    </license>
+  </licenses>
+
+  <developers>
+    <developer>
+      <name>Maveniverse Team</name>
+      <organization>Maveniverse Team</organization>
+    </developer>
+  </developers>
+
+  <scm>
+    <connection>scm:git:git@github.com:maveniverse/parent.git</connection>
+    <developerConnection>scm:git:git@github.com:maveniverse/parent.git</developerConnection>
+    <tag>HEAD</tag>
+    <url>https://github.com/maveniverse/parent</url>
+  </scm>
+
+  <issueManagement>
+    <system>Github</system>
+    <url>https://github.com/maveniverse/parent/issues</url>
+  </issueManagement>
+
+  <ciManagement>
+    <system>Github</system>
+    <url>https://github.com/maveniverse/parent/actions</url>
+  </ciManagement>
+
+  <distributionManagement>
+    <repository>
+      <id>${public-release.serverId}</id>
+      <url>${public-release.url}</url>
+    </repository>
+
+    <snapshotRepository>
+      <id>${public-snapshot.serverId}</id>
+      <url>${public-snapshot.url}</url>
+    </snapshotRepository>
+  </distributionManagement>
+
+  <properties>
+    <!--
+    File encodings.
+    -->
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+    <!--
+    Build timestamp.
+    -->
+    <project.build.outputTimestamp>2023-03-31T10:00:00Z</project.build.outputTimestamp>
+
+    <!--
+    Test defaults.
+    -->
+    <maven.test.redirectTestOutputToFile>true</maven.test.redirectTestOutputToFile>
+    <surefire.failIfNoSpecifiedTests>false</surefire.failIfNoSpecifiedTests>
+    <failsafe.timeout>600</failsafe.timeout>
+    <it.failIfNoSpecifiedTests>false</it.failIfNoSpecifiedTests>
+
+    <!--
+    Compiler defaults.
+    -->
+    <maven.compiler.release>8</maven.compiler.release>
+    <maven.compiler.source>${maven.compiler.release}</maven.compiler.source>
+    <maven.compiler.target>${maven.compiler.release}</maven.compiler.target>
+    <requireMavenVersion.version>3.8</requireMavenVersion.version>
+
+    <!--
+    Deployment configuration.
+    -->
+    <public.serverId>oss.sonatype.org</public.serverId>
+    <public.nexusUrl>https://s01.oss.sonatype.org</public.nexusUrl>
+
+    <public-release.serverId>${public.serverId}</public-release.serverId>
+    <public-release.url>${public.nexusUrl}/service/local/staging/deploy/maven2</public-release.url>
+
+    <public-snapshot.serverId>${public.serverId}</public-snapshot.serverId>
+    <public-snapshot.url>${public.nexusUrl}/content/repositories/snapshots</public-snapshot.url>
+  </properties>
+
+  <build>
+    <defaultGoal>install</defaultGoal>
+
+    <resources>
+      <resource>
+        <filtering>false</filtering>
+        <directory>${project.basedir}/src/main/resources</directory>
+        <includes>
+          <include>**/*</include>
+        </includes>
+      </resource>
+
+      <resource>
+        <filtering>true</filtering>
+        <directory>${project.basedir}/src/main/filtered-resources</directory>
+        <includes>
+          <include>**/*</include>
+        </includes>
+      </resource>
+    </resources>
+
+    <testResources>
+      <testResource>
+        <filtering>false</filtering>
+        <directory>${project.basedir}/src/test/resources</directory>
+        <includes>
+          <include>**/*</include>
+        </includes>
+      </testResource>
+
+      <testResource>
+        <filtering>true</filtering>
+        <directory>${project.basedir}/src/test/filtered-resources</directory>
+        <includes>
+          <include>**/*</include>
+        </includes>
+      </testResource>
+    </testResources>
+
+    <!--
+    Plugin defaults.
+    -->
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-antrun-plugin</artifactId>
+          <version>3.1.0</version>
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-assembly-plugin</artifactId>
+          <version>3.5.0</version>
+          <configuration>
+            <tarLongFileMode>gnu</tarLongFileMode>
+          </configuration>
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-clean-plugin</artifactId>
+          <version>3.2.0</version>
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>3.11.0</version>
+          <configuration>
+            <release>${maven.compiler.release}</release>
+          </configuration>
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-dependency-plugin</artifactId>
+          <version>3.5.0</version>
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-deploy-plugin</artifactId>
+          <version>3.1.1</version>
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-enforcer-plugin</artifactId>
+          <version>3.2.1</version>
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-gpg-plugin</artifactId>
+          <version>3.0.1</version>
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-install-plugin</artifactId>
+          <version>3.1.1</version>
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-invoker-plugin</artifactId>
+          <version>3.5.1</version>
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-jar-plugin</artifactId>
+          <version>3.3.0</version>
+          <configuration>
+            <archive>
+              <manifest>
+                <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+              </manifest>
+            </archive>
+          </configuration>
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-javadoc-plugin</artifactId>
+          <version>3.5.0</version>
+          <configuration>
+            <!-- Turn off strict javadoc checks in Java-8 -->
+            <doclint>none</doclint>
+          </configuration>
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-plugin-plugin</artifactId>
+          <version>3.8.1</version>
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-release-plugin</artifactId>
+          <version>3.0.0</version>
+          <configuration>
+            <localCheckout>true</localCheckout>
+            <pushChanges>false</pushChanges>
+            <autoVersionSubmodules>true</autoVersionSubmodules>
+            <goals>deploy</goals>
+            <mavenExecutorId>forked-path</mavenExecutorId>
+            <releaseProfiles>buildsupport-release</releaseProfiles>
+            <useReleaseProfile>false</useReleaseProfile>
+            <tagNameFormat>release-@{project.version}</tagNameFormat>
+          </configuration>
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-remote-resources-plugin</artifactId>
+          <version>3.0.0</version>
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-resources-plugin</artifactId>
+          <version>3.3.1</version>
+          <configuration>
+            <propertiesEncoding>ISO-8859-1</propertiesEncoding>
+          </configuration>
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-scm-plugin</artifactId>
+          <version>2.0.0</version>
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-shade-plugin</artifactId>
+          <version>3.4.1</version>
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-site-plugin</artifactId>
+          <version>3.12.1</version>
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-source-plugin</artifactId>
+          <version>3.2.1</version>
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>3.0.0</version>
+          <configuration>
+            <forkCount>1</forkCount>
+            <reuseForks>true</reuseForks>
+            <runOrder>alphabetical</runOrder>
+            <redirectTestOutputToFile>${maven.test.redirectTestOutputToFile}</redirectTestOutputToFile>
+            <failIfNoSpecifiedTests>${surefire.failIfNoSpecifiedTests}</failIfNoSpecifiedTests>
+            <systemPropertyVariables>
+              <java.awt.headless>true</java.awt.headless>
+              <java.io.tmpdir>${java.io.tmpdir}</java.io.tmpdir>
+            </systemPropertyVariables>
+          </configuration>
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-failsafe-plugin</artifactId>
+          <version>3.0.0</version>
+          <configuration>
+            <forkCount>1</forkCount>
+            <reuseForks>false</reuseForks>
+            <runOrder>alphabetical</runOrder>
+            <redirectTestOutputToFile>${maven.test.redirectTestOutputToFile}</redirectTestOutputToFile>
+            <failIfNoSpecifiedTests>${it.failIfNoSpecifiedTests}</failIfNoSpecifiedTests>
+            <forkedProcessTimeoutInSeconds>${failsafe.timeout}</forkedProcessTimeoutInSeconds>
+            <systemPropertyVariables>
+              <java.awt.headless>true</java.awt.headless>
+              <java.io.tmpdir>${java.io.tmpdir}</java.io.tmpdir>
+            </systemPropertyVariables>
+          </configuration>
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-war-plugin</artifactId>
+          <version>3.3.2</version>
+        </plugin>
+
+        <plugin>
+          <groupId>org.codehaus.modello</groupId>
+          <artifactId>modello-maven-plugin</artifactId>
+          <version>2.1.1</version>
+          <configuration>
+            <javaSource>${maven.compiler.release}</javaSource>
+          </configuration>
+        </plugin>
+
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>build-helper-maven-plugin</artifactId>
+          <version>3.3.0</version>
+        </plugin>
+
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>buildnumber-maven-plugin</artifactId>
+          <version>3.0.0</version>
+        </plugin>
+
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>exec-maven-plugin</artifactId>
+          <version>3.1.0</version>
+        </plugin>
+
+        <plugin>
+          <groupId>org.eclipse.sisu</groupId>
+          <artifactId>sisu-maven-plugin</artifactId>
+          <version>0.3.5</version>
+        </plugin>
+
+        <plugin>
+          <groupId>com.diffplug.spotless</groupId>
+          <artifactId>spotless-maven-plugin</artifactId>
+          <version>2.35.0</version>
+        </plugin>
+
+        <!--
+        See 'license-check' and 'license-format' profiles.
+        -->
+        <plugin>
+          <groupId>com.mycila</groupId>
+          <artifactId>license-maven-plugin</artifactId>
+          <version>4.2</version>
+          <configuration>
+            <encoding>UTF-8</encoding>
+            <strictCheck>true</strictCheck>
+            <useDefaultExcludes>false</useDefaultExcludes>
+            <header>${project.basedir}/header.txt</header>
+            <aggregate>true</aggregate>
+            <includes>
+              <include>**/pom.xml</include>
+              <include>**/*.xml</include>
+              <include>**/*.xsd</include>
+              <include>**/*.xjb</include>
+              <include>**/*.properties</include>
+              <include>**/*.ini</include>
+              <include>**/*.java</include>
+              <include>**/*.groovy</include>
+              <include>**/*.scala</include>
+              <include>**/*.aj</include>
+              <include>**/*.js</include>
+              <include>**/*.css</include>
+              <include>**/*.help</include>
+              <include>**/*.proto</include>
+              <include>**/*.sm</include>
+              <include>**/*.bat</include>
+              <include>**/*.xsl</include>
+              <include>**/*.html</include>
+              <include>**/*.vm</include>
+              <include>**/*.md</include>
+              <include>**/*.sh</include>
+              <include>**/*.bash</include>
+              <include>**/*.rb</include>
+            </includes>
+            <excludes>
+              <exclude>**/target/**</exclude>
+              <exclude>**/.*/**</exclude>
+              <exclude>**/dependency-reduced-pom.xml</exclude>
+              <exclude>**/nbactions*.xml</exclude>
+              <exclude>**/nb-configuration.xml</exclude>
+              <exclude>**/atlassian-ide-plugin.xml</exclude>
+              <exclude>**/release.properties</exclude>
+              <exclude>**/META-INF/services/**</exclude>
+            </excludes>
+            <mapping>
+              <aj>JAVADOC_STYLE</aj>
+              <groovy>SLASHSTAR_STYLE</groovy>
+              <help>SCRIPT_STYLE</help>
+              <ini>SCRIPT_STYLE</ini>
+              <java>SLASHSTAR_STYLE</java>
+              <md>XML_STYLE</md>
+              <proto>DOUBLESLASH_STYLE</proto>
+              <scala>SLASHSTAR_STYLE</scala>
+              <sm>DOUBLESLASH_STYLE</sm>
+              <vm>VELOCITY_STYLE</vm>
+              <xjb>XML_STYLE</xjb>
+            </mapping>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-enforcer-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>enforce-environment</id>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+            <configuration>
+              <rules>
+                <requireMavenVersion>
+                  <version>${requireMavenVersion.version}</version>
+                </requireMavenVersion>
+                <requireJavaVersion>
+                  <version>${maven.compiler.release}</version>
+                </requireJavaVersion>
+              </rules>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>com.diffplug.spotless</groupId>
+        <artifactId>spotless-maven-plugin</artifactId>
+        <configuration>
+          <java>
+            <palantirJavaFormat />
+            <removeUnusedImports />
+          </java>
+          <pom>
+            <sortPom>
+              <expandEmptyElements>false</expandEmptyElements>
+              <!-- https://issues.apache.org/jira/browse/MRELEASE-1111 -->
+              <spaceBeforeCloseEmptyElement>true</spaceBeforeCloseEmptyElement>
+            </sortPom>
+          </pom>
+          <upToDateChecking>
+            <enabled>true</enabled>
+          </upToDateChecking>
+        </configuration>
+        <executions>
+          <execution>
+            <id>check</id>
+            <goals>
+              <goal>check</goal>
+            </goals>
+            <phase>process-sources</phase>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+  <profiles>
+    <!--
+    Release configuration.
+    -->
+    <profile>
+      <id>maveniverse-release</id>
+      <build>
+        <!--
+        Configure deployment plugins in DM
+        -->
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-enforcer-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>enforce-release</id>
+                <goals>
+                  <goal>enforce</goal>
+                </goals>
+                <configuration>
+                  <rules>
+                    <!--
+                    Disallow SNAPSHOT dependencies.
+                    -->
+                    <requireReleaseDeps>
+                      <searchTransitive>true</searchTransitive>
+                      <failWhenParentIsSnapshot>true</failWhenParentIsSnapshot>
+                    </requireReleaseDeps>
+
+                    <!--
+                    Disallow SNAPSHOT, RELEASE, LATEST or pinned-SNAPSHOT plugins.
+                    -->
+                    <requirePluginVersions>
+                      <banSnapshots>true</banSnapshots>
+                      <banRelease>true</banRelease>
+                      <banLatest>true</banLatest>
+                      <banTimestamps>true</banTimestamps>
+                    </requirePluginVersions>
+                  </rules>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <configuration>
+              <passphrase>${gpg.passphrase}</passphrase>
+              <useAgent>true</useAgent>
+            </configuration>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>attach-javadocs</id>
+                <goals>
+                  <goal>jar</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-source-plugin</artifactId>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>jar-no-fork</goal>
+                </goals>
+                <configuration>
+                  <includePom>true</includePom>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <!--
+    Verify license headers; use: mvn -Plicense-check -N
+    -->
+    <profile>
+      <id>license-check</id>
+      <build>
+        <defaultGoal>com.mycila:license-maven-plugin:check</defaultGoal>
+      </build>
+    </profile>
+
+    <!--
+    Format license headers; use: mvn -Plicense-format -N
+    -->
+    <profile>
+      <id>license-format</id>
+      <build>
+        <defaultGoal>com.mycila:license-maven-plugin:format</defaultGoal>
+      </build>
+    </profile>
+  </profiles>
+
+</project>
