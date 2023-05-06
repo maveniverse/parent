@@ -83,12 +83,16 @@
     <it.failIfNoSpecifiedTests>false</it.failIfNoSpecifiedTests>
 
     <!--
-    Compiler defaults.
+    Compiler defaults: Java 8 byte code.
     -->
     <maven.compiler.release>8</maven.compiler.release>
     <maven.compiler.source>${maven.compiler.release}</maven.compiler.source>
     <maven.compiler.target>${maven.compiler.release}</maven.compiler.target>
-    <requireMavenVersion.version>3.8</requireMavenVersion.version>
+    <!--
+    Build time: latest Maven and LTS Java.
+    -->
+    <requireBuildtimeMavenVersion.version>[3.9.1,)</requireBuildtimeMavenVersion.version>
+    <requireBuildtimeJavaVersion.version>[17.0.7,)</requireBuildtimeJavaVersion.version>
 
     <!--
     Deployment configuration.
@@ -198,7 +202,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-gpg-plugin</artifactId>
-          <version>3.0.1</version>
+          <version>3.1.0</version>
         </plugin>
 
         <plugin>
@@ -240,7 +244,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-plugin-plugin</artifactId>
-          <version>3.8.1</version>
+          <version>3.8.2</version>
         </plugin>
 
         <plugin>
@@ -456,10 +460,10 @@
             <configuration>
               <rules>
                 <requireMavenVersion>
-                  <version>${requireMavenVersion.version}</version>
+                  <version>${requireBuildtimeMavenVersion.version}</version>
                 </requireMavenVersion>
                 <requireJavaVersion>
-                  <version>${maven.compiler.release}</version>
+                  <version>${requireBuildtimeJavaVersion.version}</version>
                 </requireJavaVersion>
               </rules>
             </configuration>
