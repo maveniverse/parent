@@ -6,7 +6,7 @@
   <groupId>eu.maveniverse.maven.parent</groupId>
   <artifactId>parent</artifactId>
 
-  <version>5</version>
+  <version>6-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>${project.groupId}:${project.artifactId}</name>
 
@@ -36,7 +36,7 @@
   <scm>
     <connection>scm:git:git@github.com:maveniverse/parent.git</connection>
     <developerConnection>scm:git:git@github.com:maveniverse/parent.git</developerConnection>
-    <tag>release-5</tag>
+    <tag>HEAD</tag>
     <url>https://github.com/maveniverse/parent</url>
   </scm>
 
@@ -72,7 +72,7 @@
     <!--
     Build timestamp.
     -->
-    <project.build.outputTimestamp>2023-10-10T20:43:58Z</project.build.outputTimestamp>
+    <project.build.outputTimestamp>2023-10-10T20:44:02Z</project.build.outputTimestamp>
 
     <!--
     Test defaults.
