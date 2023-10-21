@@ -86,13 +86,16 @@
     Compiler defaults: Java 8 byte code.
     -->
     <maven.compiler.release>8</maven.compiler.release>
-    <maven.compiler.source>${maven.compiler.release}</maven.compiler.source>
-    <maven.compiler.target>${maven.compiler.release}</maven.compiler.target>
     <!--
     Build time: latest Maven and LTS Java.
     -->
-    <requireBuildtimeMavenVersion.version>[3.9.1,)</requireBuildtimeMavenVersion.version>
+    <requireBuildtimeMavenVersion.version>[3.9.4,)</requireBuildtimeMavenVersion.version>
     <requireBuildtimeJavaVersion.version>[17.0.7,)</requireBuildtimeJavaVersion.version>
+
+    <!--
+    Some notable versions.
+    -->
+    <version.sisu>0.9.0.M2</version.sisu>
 
     <!--
     Deployment configuration.
@@ -178,6 +181,10 @@
           <version>3.11.0</version>
           <configuration>
             <release>${maven.compiler.release}</release>
+            <proc>none</proc>
+            <compilerArgs>
+              <arg>-Xlint:deprecation</arg>
+            </compilerArgs>
           </configuration>
         </plugin>
 
@@ -373,7 +380,7 @@
         <plugin>
           <groupId>org.eclipse.sisu</groupId>
           <artifactId>sisu-maven-plugin</artifactId>
-          <version>0.9.0.M2</version>
+          <version>${version.sisu}</version>
         </plugin>
 
         <plugin>
@@ -475,7 +482,9 @@
         <artifactId>spotless-maven-plugin</artifactId>
         <configuration>
           <java>
-            <palantirJavaFormat />
+            <palantirJavaFormat>
+              <version>2.38.0</version>
+            </palantirJavaFormat>
             <removeUnusedImports />
           </java>
           <pom>
