@@ -1,20 +1,16 @@
 name: CI
 
 on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
   workflow_call:
     inputs:
       maven-build:
-        description: The maven invocation for test step
+        description: The maven invocation for build step
         required: false
         default: './mvnw clean install -e -B -V'
         type: string
 
       maven-test:
-        description: The maven invocation for test step
+        description: The maven invocation for test matrix step
         required: false
         default: './mvnw install -e -B -V -P run-its'
         type: string
