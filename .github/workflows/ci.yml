@@ -39,6 +39,10 @@ on:
         default: '[ "3.9.6", "4.0.0-alpha-12" ]'
         type: string
 
+concurrency: 
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build:
     name: Build
