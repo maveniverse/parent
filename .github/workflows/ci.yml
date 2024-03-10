@@ -75,7 +75,7 @@ jobs:
     name: Test
     runs-on: ubuntu-latest
     needs: build
-    if: inputs.maven-test-run
+    if: inputs.maven-test-run && ( !inputs.maven-single-run || needs.maven-single-run.result == 'success' )
     strategy:
       matrix:
         os: ${{ fromJSON( inputs.os-matrix ) }}
