@@ -70,7 +70,7 @@ jobs:
         with:
           path: ~/.m2/repository
           key: ${{ runner.os }}-maven-${{ github.sha }}
-      - run: ${{ inputs.maven-build }}
+      - run: ${{ inputs.maven-single }}
   test:
     name: Test
     runs-on: ubuntu-latest
