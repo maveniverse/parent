@@ -36,7 +36,7 @@ on:
       jdk-matrix:
         description: jdk matrix as json array
         required: false
-        default: '[ "11", "17", "21" ]'
+        default: '[ "17", "21" ]'
         type: string
 
       jdk-distribution-matrix:
