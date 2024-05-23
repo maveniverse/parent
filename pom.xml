@@ -115,7 +115,7 @@
     <!--
     Some notable versions.
     -->
-    <modernizer.version>2.8.0</modernizer.version>
+    <modernizer.version>2.9.0</modernizer.version>
     <version.sisu>0.9.0.M2</version.sisu>
 
     <!--
