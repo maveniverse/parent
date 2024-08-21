@@ -121,7 +121,7 @@
     <!--
     Deployment configuration.
     -->
-    <public.serverId>oss.sonatype.org</public.serverId>
+    <public.serverId>s01.oss.sonatype.org</public.serverId>
     <public.nexusUrl>https://s01.oss.sonatype.org</public.nexusUrl>
 
     <public-release.serverId>${public.serverId}</public-release.serverId>
