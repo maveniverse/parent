@@ -36,6 +36,7 @@ on:
       jdk-matrix:
         description: jdk matrix as json array
         required: false
+        # dont forget matrix-exludes below if changing Java versions
         default: '[ "8", "17", "21" ]'
         type: string
 
@@ -48,6 +49,7 @@ on:
       maven-matrix:
         description: The Maven version matrix as json array
         required: false
+        # dont forget matrix-exludes below if changing Maven versions
         default: '[ "3.6.3", "3.8.8", "3.9.9", "4.0.0-beta-4" ]'
         type: string
 
