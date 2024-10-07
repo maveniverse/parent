@@ -240,7 +240,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-gpg-plugin</artifactId>
-          <version>3.2.5</version>
+          <version>3.2.7</version>
         </plugin>
 
         <plugin>
@@ -272,7 +272,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-javadoc-plugin</artifactId>
-          <version>3.10.0</version>
+          <version>3.10.1</version>
           <configuration>
             <!-- Turn off strict javadoc checks in Java-8 -->
             <doclint>none</doclint>
@@ -359,7 +359,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-surefire-plugin</artifactId>
-          <version>3.5.0</version>
+          <version>3.5.1</version>
           <configuration>
             <forkCount>1</forkCount>
             <reuseForks>true</reuseForks>
@@ -376,7 +376,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-failsafe-plugin</artifactId>
-          <version>3.5.0</version>
+          <version>3.5.1</version>
           <configuration>
             <forkCount>1</forkCount>
             <reuseForks>false</reuseForks>
@@ -485,7 +485,7 @@
         <plugin>
           <groupId>com.mycila</groupId>
           <artifactId>license-maven-plugin</artifactId>
-          <version>4.5</version>
+          <version>4.6</version>
           <configuration>
             <aggregate>true</aggregate>
             <strictCheck>true</strictCheck>
