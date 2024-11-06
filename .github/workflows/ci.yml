@@ -73,7 +73,7 @@ jobs:
       - uses: actions/cache@v4
         with:
           path: ~/.m2/repository
-          key: ${{ runner.os }}-maven-${{ github.sha }}
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
       - run: ${{ inputs.maven-single }}
   test:
     name: Test
@@ -103,7 +103,7 @@ jobs:
       - uses: actions/cache@v4
         with:
           path: ~/.m2/repository
-          key: ${{ runner.os }}-maven-${{ github.sha }}
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
       - run: ./mvnw -Dmaven=${{ matrix.maven }} -Dtype=only-script wrapper:wrapper
       - run: ${{ inputs.maven-test }}
     
