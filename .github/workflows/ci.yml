@@ -36,8 +36,8 @@ on:
       jdk-matrix:
         description: jdk matrix as json array
         required: false
-        # dont forget matrix-exludes below if changing Java versions
-        default: '[ "8", "17", "21" ]'
+        # don't forget matrix-excludes below if changing Java versions
+        default: '[ "8", "17", "21", "23" ]'
         type: string
 
       jdk-distribution-matrix:
@@ -50,7 +50,7 @@ on:
         description: The Maven version matrix as json array
         required: false
         # don't forget matrix-excludes below if changing Maven versions
-        default: '[ "3.6.3", "3.8.8", "3.9.9", "4.0.0-rc-1" ]'
+        default: '[ "3.6.3", "3.8.8", "3.9.9", "4.0.0-rc-2" ]'
         type: string
 
 concurrency: 
@@ -73,13 +73,16 @@ jobs:
       - uses: actions/cache@v4
         with:
           path: ~/.m2/repository
-          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          key: mvn-${{ hashFiles('**/pom.xml') }}-${{ github.sha }}
+          restore-keys: |
+            mvn-${{ hashFiles('**/pom.xml') }}-
+            mvn-
       - run: ${{ inputs.maven-single }}
   test:
     name: Test
     runs-on: ubuntu-latest
     needs: build
-    if: always() && inputs.maven-test-run && ( !inputs.maven-single-run || needs.build.result == 'success' )
+    if: (!cancelled()) && inputs.maven-test-run && ( !inputs.maven-single-run || needs.build.result == 'success' )
     strategy:
       fail-fast: false
       matrix:
@@ -89,9 +92,9 @@ jobs:
         maven: ${{ fromJSON( inputs.maven-matrix ) }}
         exclude:
           - jdk: 8
-            maven: 4.0.0-rc-1
+            maven: 4.0.0-rc-2
           - jdk: 11
-            maven: 4.0.0-rc-1
+            maven: 4.0.0-rc-2
     steps:
       - uses: actions/checkout@v4
         with:
@@ -103,7 +106,7 @@ jobs:
       - uses: actions/cache@v4
         with:
           path: ~/.m2/repository
-          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          key: mvn-${{ hashFiles('**/pom.xml') }}-${{ github.sha }}
       - run: ./mvnw -Dmaven=${{ matrix.maven }} -Dtype=only-script wrapper:wrapper
       - run: ${{ inputs.maven-test }}
     
