@@ -107,6 +107,6 @@ jobs:
         with:
           path: ~/.m2/repository
           key: mvn-${{ hashFiles('**/pom.xml') }}-${{ github.sha }}
-      - run: ./mvnw -Dmaven=${{ matrix.maven }} -Dtype=only-script wrapper:wrapper
+      - run: ./mvnw -N -Dmaven=${{ matrix.maven }} -Dtype=only-script wrapper:wrapper
       - run: ${{ inputs.maven-test }}
     
