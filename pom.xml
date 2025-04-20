@@ -111,12 +111,18 @@
     -->
     <requireBuildtimeMavenVersion.version>[3.9.9,)</requireBuildtimeMavenVersion.version>
     <requireBuildtimeJavaVersion.version>[21.0.7,)</requireBuildtimeJavaVersion.version>
+    <!--
+    Runtime: Maven 3.6.3 and ${maven.compiler.release}
+    -->
+    <requireBuildtimeMavenVersion.version>[3.6.3,)</requireBuildtimeMavenVersion.version>
+    <requireBuildtimeJavaVersion.version>${maven.compiler.release}</requireBuildtimeJavaVersion.version>
 
     <!--
     Some notable versions.
     -->
     <version.modernizer>3.1.0</version.modernizer>
     <version.sisu>0.9.0.M3</version.sisu>
+    <version.maven-plugin-tools>3.15.1</version.maven-plugin-tools>
 
     <!--
     Deployment configuration.
@@ -289,12 +295,12 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-plugin-plugin</artifactId>
-          <version>3.15.1</version>
+          <version>${version.maven-plugin-tools}</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-plugin-report-plugin</artifactId>
-          <version>3.15.1</version>
+          <version>${version.maven-plugin-tools}</version>
         </plugin>
 
         <plugin>
