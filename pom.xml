@@ -114,8 +114,8 @@
     <!--
     Runtime: Maven 3.6.3 and ${maven.compiler.release}
     -->
-    <requireBuildtimeMavenVersion.version>[3.6.3,)</requireBuildtimeMavenVersion.version>
-    <requireBuildtimeJavaVersion.version>${maven.compiler.release}</requireBuildtimeJavaVersion.version>
+    <requireRuntimeMavenVersion.version>[3.6.3,)</requireRuntimeMavenVersion.version>
+    <requireRuntimeJavaVersion.version>${maven.compiler.release}</requireRuntimeJavaVersion.version>
 
     <!--
     Some notable versions.
