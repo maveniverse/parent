@@ -109,13 +109,13 @@
     <!--
     Build time: latest Maven and LTS Java.
     -->
-    <requireBuildtimeMavenVersion.version>[3.9.9,)</requireBuildtimeMavenVersion.version>
-    <requireBuildtimeJavaVersion.version>[21.0.7,)</requireBuildtimeJavaVersion.version>
+    <requireBuildtimeMavenVersion.range>[3.9.9,)</requireBuildtimeMavenVersion.range>
+    <requireBuildtimeJavaVersion.range>[21.0.7,)</requireBuildtimeJavaVersion.range>
     <!--
     Runtime: Maven 3.6.3 and ${maven.compiler.release}
     -->
-    <requireRuntimeMavenVersion.version>[3.6.3,)</requireRuntimeMavenVersion.version>
-    <requireRuntimeJavaVersion.version>${maven.compiler.release}</requireRuntimeJavaVersion.version>
+    <requireRuntimeMavenVersion.range>[3.6.3,)</requireRuntimeMavenVersion.range>
+    <requireRuntimeJavaVersion.range>[${maven.compiler.release},)</requireRuntimeJavaVersion.range>
 
     <!--
     Some notable versions.
@@ -557,10 +557,10 @@
             <configuration>
               <rules>
                 <requireMavenVersion>
-                  <version>${requireBuildtimeMavenVersion.version}</version>
+                  <version>${requireBuildtimeMavenVersion.range}</version>
                 </requireMavenVersion>
                 <requireJavaVersion>
-                  <version>${requireBuildtimeJavaVersion.version}</version>
+                  <version>${requireBuildtimeJavaVersion.range}</version>
                 </requireJavaVersion>
               </rules>
             </configuration>
