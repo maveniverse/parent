@@ -109,8 +109,8 @@
     <!--
     Build time: latest Maven and LTS Java.
     -->
-    <requireBuildtimeMavenVersion.version>[3.9.6,)</requireBuildtimeMavenVersion.version>
-    <requireBuildtimeJavaVersion.version>[17.0.7,)</requireBuildtimeJavaVersion.version>
+    <requireBuildtimeMavenVersion.version>[3.9.9,)</requireBuildtimeMavenVersion.version>
+    <requireBuildtimeJavaVersion.version>[21.0.7,)</requireBuildtimeJavaVersion.version>
 
     <!--
     Some notable versions.
@@ -129,6 +129,11 @@
 
     <public-snapshot.serverId>${public.serverId}</public-snapshot.serverId>
     <public-snapshot.url>${public.nexusUrl}/content/repositories/snapshots</public-snapshot.url>
+
+    <!--
+    Skip site (usually plugin reports are needed)
+    -->
+    <site.skip>true</site.skip>
   </properties>
 
   <dependencyManagement>
@@ -346,7 +351,7 @@
           <artifactId>maven-site-plugin</artifactId>
           <version>3.21.0</version>
           <configuration>
-            <skip>true</skip>
+            <skip>${site.skip}</skip>
           </configuration>
         </plugin>
 
@@ -585,6 +590,22 @@
       </plugin>
     </plugins>
   </build>
+
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-plugin-report-plugin</artifactId>
+        <reportSets>
+          <reportSet>
+            <reports>
+              <report>report</report>
+            </reports>
+          </reportSet>
+        </reportSets>
+      </plugin>
+    </plugins>
+  </reporting>
 
   <profiles>
     <!--
