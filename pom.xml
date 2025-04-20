@@ -109,8 +109,8 @@
     <!--
     Build time: latest Maven and LTS Java.
     -->
-    <requireBuildtimeMavenVersion.range>[3.9.9,)</requireBuildtimeMavenVersion.range>
-    <requireBuildtimeJavaVersion.range>[21.0.7,)</requireBuildtimeJavaVersion.range>
+    <requireBuildtimeMavenVersion.range>[3.9,)</requireBuildtimeMavenVersion.range>
+    <requireBuildtimeJavaVersion.range>[21,)</requireBuildtimeJavaVersion.range>
     <!--
     Runtime: Maven 3.6.3 and ${maven.compiler.release}
     -->
