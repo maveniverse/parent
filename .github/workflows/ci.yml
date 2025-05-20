@@ -1,3 +1,22 @@
+#
+# CI workflow
+# Calling it:
+#   name: CI
+#
+#   on:
+#     push:
+#       branches:
+#         - main
+#     pull_request:
+#
+#   jobs:
+#     build:
+#       name: Verify
+#       uses: maveniverse/parent/.github/workflows/ci.yml@release-29
+#
+# Secrets: none
+#
+
 name: CI
 
 on:
@@ -72,11 +91,11 @@ jobs:
           distribution: 'temurin'
       - uses: actions/cache@v4
         with:
-          path: ~/.m2/repository
-          key: mvn-${{ hashFiles('**/pom.xml') }}-${{ github.sha }}
+          path: ~/.mimir/local
+          key: mimir-${{ hashFiles('**/pom.xml') }}-${{ github.sha }}
           restore-keys: |
-            mvn-${{ hashFiles('**/pom.xml') }}-
-            mvn-
+            mimir-${{ hashFiles('**/pom.xml') }}-
+            mimir-
       - run: ${{ inputs.maven-single }}
   test:
     name: Test
@@ -105,8 +124,8 @@ jobs:
           distribution: 'temurin'
       - uses: actions/cache@v4
         with:
-          path: ~/.m2/repository
-          key: mvn-${{ hashFiles('**/pom.xml') }}-${{ github.sha }}
-      - run: ./mvnw -N -Dmaven=${{ matrix.maven }} -Dtype=only-script wrapper:wrapper
+          path: ~/.mimir/local
+          key: mimir-${{ hashFiles('**/pom.xml') }}-${{ github.sha }}
+      - run: ./mvnw -N -Dmaven=${{ matrix.maven }} wrapper:wrapper
       - run: ${{ inputs.maven-test }}
     

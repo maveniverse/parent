@@ -62,13 +62,14 @@
 
   <distributionManagement>
     <repository>
-      <id>${public-release.serverId}</id>
-      <url>${public-release.url}</url>
+      <id>sonatype-central-portal</id>
+      <name>Sonatype Central Portal</name>
+      <url>https://repo.maven.apache.org/maven2/</url>
     </repository>
-
     <snapshotRepository>
-      <id>${public-snapshot.serverId}</id>
-      <url>${public-snapshot.url}</url>
+      <id>sonatype-central-portal</id>
+      <name>Sonatype Central Portal</name>
+      <url>https://central.sonatype.com/repository/maven-snapshots/</url>
     </snapshotRepository>
     <site>
       <id>github</id>
@@ -123,18 +124,6 @@
     <version.modernizer>3.1.0</version.modernizer>
     <version.sisu>0.9.0.M3</version.sisu>
     <version.maven-plugin-tools>3.15.1</version.maven-plugin-tools>
-
-    <!--
-    Deployment configuration.
-    -->
-    <public.serverId>s01.oss.sonatype.org</public.serverId>
-    <public.nexusUrl>https://s01.oss.sonatype.org</public.nexusUrl>
-
-    <public-release.serverId>${public.serverId}</public-release.serverId>
-    <public-release.url>${public.nexusUrl}/service/local/staging/deploy/maven2</public-release.url>
-
-    <public-snapshot.serverId>${public.serverId}</public-snapshot.serverId>
-    <public-snapshot.url>${public.nexusUrl}/content/repositories/snapshots</public-snapshot.url>
 
     <!--
     Skip site (usually plugin reports are needed)
@@ -312,6 +301,7 @@
             <pushChanges>false</pushChanges>
             <autoVersionSubmodules>true</autoVersionSubmodules>
             <goals>deploy</goals>
+            <arguments>-Dtest=void -Dit=void -Dnjord.autoPublish</arguments>
             <mavenExecutorId>forked-path</mavenExecutorId>
             <releaseProfiles>maveniverse-release</releaseProfiles>
             <useReleaseProfile>false</useReleaseProfile>
@@ -595,6 +585,19 @@
         </executions>
       </plugin>
     </plugins>
+
+    <extensions>
+      <extension>
+        <groupId>eu.maveniverse.maven.mimir</groupId>
+        <artifactId>extension</artifactId>
+        <version>0.7.5</version>
+      </extension>
+      <extension>
+        <groupId>eu.maveniverse.maven.njord</groupId>
+        <artifactId>extension</artifactId>
+        <version>0.5.4</version>
+      </extension>
+    </extensions>
   </build>
 
   <reporting>
@@ -661,9 +664,6 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-gpg-plugin</artifactId>
-            <configuration>
-              <useAgent>true</useAgent>
-            </configuration>
             <executions>
               <execution>
                 <goals>
