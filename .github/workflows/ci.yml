@@ -91,11 +91,11 @@ jobs:
           distribution: 'temurin'
       - uses: actions/cache@v4
         with:
-          path: ~/.mimir/local
-          key: mimir-${{ hashFiles('**/pom.xml') }}-${{ github.sha }}
+          path: ~/.m2/repository
+          key: mvn-${{ hashFiles('**/pom.xml') }}-${{ github.sha }}
           restore-keys: |
-            mimir-${{ hashFiles('**/pom.xml') }}-
-            mimir-
+            mvn-${{ hashFiles('**/pom.xml') }}-
+            mvn-
       - run: ${{ inputs.maven-single }}
   test:
     name: Test
@@ -124,8 +124,8 @@ jobs:
           distribution: 'temurin'
       - uses: actions/cache@v4
         with:
-          path: ~/.mimir/local
-          key: mimir-${{ hashFiles('**/pom.xml') }}-${{ github.sha }}
+          path: ~/.m2/repository
+          key: mvn-${{ hashFiles('**/pom.xml') }}-${{ github.sha }}
       - run: ./mvnw -N -Dmaven=${{ matrix.maven }} wrapper:wrapper
       - run: ${{ inputs.maven-test }}
     
