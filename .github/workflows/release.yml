@@ -74,7 +74,6 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          cat "${{ github.action_path }}/.github/release-settings.xml" > .github/release-settings.xml
           gh extension install valeriobelli/gh-milestone
           version=$(./mvnw -q -DforceStdout --raw-streams help:evaluate -N -Dexpression=project.version | sed -rn 's/([^-]+)(-SNAPSHOT|)$/\1/p')
           echo "version=$version" >> "$GITHUB_OUTPUT"
