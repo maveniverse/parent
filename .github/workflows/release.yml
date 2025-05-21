@@ -74,9 +74,15 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh extension install valeriobelli/gh-milestone
-          version=$(./mvnw -q -DforceStdout help:evaluate -N -Dexpression=project.version | sed -rn 's/([^-]+)(-SNAPSHOT|)$/\1/p')
+          mavenMajorVersion=$(./mvnw -v -q | cut -d '.' -f 1)
+          if [[ $mavenMajorVersion == "3" ]] ; then
+            version=$(./mvnw -q -DforceStdout help:evaluate -N -Dexpression=project.version | sed -rn 's/([^-]+)(-SNAPSHOT|)$/\1/p')
+          else
+            version=$(./mvnw -q -DforceStdout --raw-streams help:evaluate -N -Dexpression=project.version | sed -rn 's/([^-]+)(-SNAPSHOT|)$/\1/p')
+          fi
+          echo "mavenMajorVersion=$mavenMajorVersion" >> "$GITHUB_OUTPUT"
           echo "version=$version" >> "$GITHUB_OUTPUT"
+          gh extension install valeriobelli/gh-milestone
 
       - name: Release
         env:
@@ -93,6 +99,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         shell: bash
         run: |
+          mavenMajorVersion=${{ steps.pre-release.outputs.mavenMajorVersion }}
           version=${{ steps.pre-release.outputs.version }}
           echo "Trying to find milestone $version"
           milestone=$(gh milestone list --json id,title,state  --jq "map_values(select(.title == \"${version}\" and .state == \"OPEN\")).[].number")
@@ -101,7 +108,11 @@ jobs:
               gh milestone edit $milestone --state closed
           fi
 
-          version=$(./mvnw -q -DforceStdout --raw-streams help:evaluate -N -Dexpression=project.version | sed -rn 's/([^-]+)(-SNAPSHOT|)$/\1/p')
+          if [[ $mavenMajorVersion == "3" ]] ; then
+            version=$(./mvnw -q -DforceStdout help:evaluate -N -Dexpression=project.version | sed -rn 's/([^-]+)(-SNAPSHOT|)$/\1/p')
+          else
+            version=$(./mvnw -q -DforceStdout --raw-streams help:evaluate -N -Dexpression=project.version | sed -rn 's/([^-]+)(-SNAPSHOT|)$/\1/p')
+          fi
           echo "Preparing development $version"
           echo "Trying to find milestone $version"
           milestone=$(gh milestone list --json id,title,state  --jq "map_values(select(.title == \"${version}\" and .state == \"OPEN\")).[].number")
@@ -110,7 +121,11 @@ jobs:
               gh milestone create --title $version
           fi
 
-          name=$(./mvnw -q -DforceStdout --raw-streams help:evaluate -N -Dexpression=project.name)
+          if [[ $mavenMajorVersion == "3" ]] ; then
+            name=$(./mvnw -q -DforceStdout help:evaluate -N -Dexpression=project.name)
+          else
+            name=$(./mvnw -q -DforceStdout --raw-streams help:evaluate -N -Dexpression=project.name)
+          fi
           version=${{ steps.pre-release.outputs.version }}
           tag=$(git describe --tags --abbrev=0)
           echo "Creating release \"$name $version\" from tag $tag"
