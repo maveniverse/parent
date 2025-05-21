@@ -92,7 +92,7 @@ jobs:
           MAVEN_USER: ${{ secrets.MAVEN_USER }}
           MAVEN_PASSWORD: ${{ secrets.MAVEN_PASSWORD }}
         run: |
-          ./mvnw -V -B release:prepare release:perform -DpushChanges -Darguments="-Dgpg.useagent=false -Dgpg.signer=bc" -s .github/release-settings.xml -DreleaseVersion=${{ github.event.inputs.version }} -DdevelopmentVersion=${{ github.event.inputs.next-version }}
+          ./mvnw -V -B release:prepare release:perform -Dmaveniverse.release.pushChanges -Darguments="-Dgpg.useagent=false -Dgpg.signer=bc" -s .github/release-settings.xml -DreleaseVersion=${{ github.event.inputs.version }} -DdevelopmentVersion=${{ github.event.inputs.next-version }}
 
       - name: Post release
         env:

@@ -129,6 +129,10 @@
     Skip site (usually plugin reports are needed)
     -->
     <site.skip>true</site.skip>
+    <!--
+    Release push changes (used by release.yml workflow); if not using workflow, ignore it
+    -->
+    <maveniverse.release.pushChanges>false</maveniverse.release.pushChanges>
   </properties>
 
   <dependencyManagement>
@@ -298,7 +302,7 @@
           <version>3.1.1</version>
           <configuration>
             <localCheckout>true</localCheckout>
-            <pushChanges>false</pushChanges>
+            <pushChanges>${maveniverse.release.pushChanges}</pushChanges>
             <autoVersionSubmodules>true</autoVersionSubmodules>
             <goals>deploy</goals>
             <arguments>-Dtest=void -Dit=void -Dnjord.autoPublish</arguments>
