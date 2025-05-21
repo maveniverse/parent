@@ -634,6 +634,12 @@
                 <configuration>
                   <rules>
                     <!--
+                    Release possible ONLY with latest 3.9.x
+                    -->
+                    <requireMavenVersion>
+                      <version>[3.9.9,3.999.999)</version>
+                    </requireMavenVersion>
+                    <!--
                     Disallow SNAPSHOT dependencies.
                     -->
                     <requireReleaseDeps>
