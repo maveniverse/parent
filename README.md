@@ -95,4 +95,6 @@ jobs:
 
 Note: POM parent version and `@release-XX` suffix of reused workflows **should match**.
 
-Once all done, to perform automated release, just fire the `Release` workflow with required parameters.
+Once all done, to perform automated release, just fire the `Release` workflow with required parameters. Once the
+action finishes, project will be staged to [Sonatype Central Portal](https://central.sonatype.com/publishing); **manual step**: once validation passes, 
+publish it.
