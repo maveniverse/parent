@@ -129,4 +129,4 @@ jobs:
           version=${{ steps.pre-release.outputs.version }}
           tag=$(git describe --tags --abbrev=0)
           echo "Creating release \"$name $version\" from tag $tag"
-          gh release create $tag --verify-tag --notes-from-tag --title "$name $version"
+          gh release create $tag --verify-tag --notes-from-tag --title "$version"
