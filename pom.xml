@@ -130,8 +130,9 @@
     -->
     <site.skip>true</site.skip>
     <!--
-    Release push changes (used by release.yml workflow); if not using workflow, ignore it
+    Release configuration (some are redefined by release.yml workflow)
     -->
+    <maveniverse.release.njordVersion>0.5.5</maveniverse.release.njordVersion>
     <maveniverse.release.pushChanges>false</maveniverse.release.pushChanges>
   </properties>
 
@@ -536,6 +537,13 @@
             </mapping>
           </configuration>
         </plugin>
+
+        <!-- Njord plugin: to keep it aligned with extension -->
+        <plugin>
+          <groupId>eu.maveniverse.maven.plugins</groupId>
+          <artifactId>njord</artifactId>
+          <version>${maveniverse.release.njordVersion}</version>
+        </plugin>
       </plugins>
     </pluginManagement>
     <plugins>
@@ -594,7 +602,7 @@
       <extension>
         <groupId>eu.maveniverse.maven.njord</groupId>
         <artifactId>extension</artifactId>
-        <version>0.5.5</version>
+        <version>${maveniverse.release.njordVersion}</version>
       </extension>
     </extensions>
   </build>
