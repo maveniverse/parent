@@ -404,15 +404,6 @@
         </plugin>
 
         <plugin>
-          <groupId>org.codehaus.modello</groupId>
-          <artifactId>modello-maven-plugin</artifactId>
-          <version>2.5.0</version>
-          <configuration>
-            <javaSource>${maven.compiler.release}</javaSource>
-          </configuration>
-        </plugin>
-
-        <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>build-helper-maven-plugin</artifactId>
           <version>3.6.0</version>
