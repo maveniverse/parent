@@ -82,7 +82,7 @@ jobs:
     runs-on: ubuntu-latest
     if: inputs.maven-single-run
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           persist-credentials: false
       - uses: actions/setup-java@v5
@@ -115,7 +115,7 @@ jobs:
           - jdk: 11
             maven: 4.0.0-rc-4
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           persist-credentials: false
       - uses: actions/setup-java@v5
