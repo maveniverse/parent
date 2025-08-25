@@ -12,7 +12,7 @@
 #   jobs:
 #     build:
 #       name: Verify
-#       uses: maveniverse/parent/.github/workflows/ci.yml@release-29
+#       uses: maveniverse/parent/.github/workflows/ci.yml@release-42
 #
 # Secrets: none
 #
@@ -82,14 +82,17 @@ jobs:
     runs-on: ubuntu-latest
     if: inputs.maven-single-run
     steps:
-      - uses: actions/checkout@v5
+      - name: Checkout
+        uses: actions/checkout@v5
         with:
           persist-credentials: false
-      - uses: actions/setup-java@v5
+      - name: Setup Java
+        uses: actions/setup-java@v5
         with:
           java-version: '21'
           distribution: 'temurin'
-      - uses: actions/cache@v4
+      - name: Cache
+        uses: actions/cache@v4
         with:
           path: ~/.m2/repository
           key: mvn-${{ hashFiles('**/pom.xml') }}-${{ github.sha }}
@@ -115,17 +118,21 @@ jobs:
           - jdk: 11
             maven: 4.0.0-rc-4
     steps:
-      - uses: actions/checkout@v5
+      - name: Checkout
+        uses: actions/checkout@v5
         with:
           persist-credentials: false
-      - uses: actions/setup-java@v5
+      - name: Setup Java
+        uses: actions/setup-java@v5
         with:
           java-version: ${{ matrix.jdk }}
           distribution: 'temurin'
-      - uses: actions/cache@v4
+      - name: Cache
+        uses: actions/cache@v4
         with:
           path: ~/.m2/repository
           key: mvn-${{ hashFiles('**/pom.xml') }}-${{ github.sha }}
+          fail-on-cache-miss: true
       - run: ./mvnw -N -Dmaven=${{ matrix.maven }} wrapper:wrapper
       - run: ${{ inputs.maven-test }}
     
