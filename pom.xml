@@ -132,7 +132,7 @@
     <!--
     Release configuration (some are redefined by release.yml workflow)
     -->
-    <maveniverse.release.njordVersion>0.8.3</maveniverse.release.njordVersion>
+    <maveniverse.release.njordVersion>0.8.4</maveniverse.release.njordVersion>
     <maveniverse.release.pushChanges>false</maveniverse.release.pushChanges>
   </properties>
 
