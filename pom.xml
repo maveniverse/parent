@@ -372,10 +372,6 @@
             <runOrder>alphabetical</runOrder>
             <redirectTestOutputToFile>${maven.test.redirectTestOutputToFile}</redirectTestOutputToFile>
             <failIfNoSpecifiedTests>${surefire.failIfNoSpecifiedTests}</failIfNoSpecifiedTests>
-            <systemPropertyVariables>
-              <java.awt.headless>true</java.awt.headless>
-              <java.io.tmpdir>${java.io.tmpdir}</java.io.tmpdir>
-            </systemPropertyVariables>
           </configuration>
         </plugin>
 
@@ -388,12 +384,8 @@
             <reuseForks>false</reuseForks>
             <runOrder>alphabetical</runOrder>
             <redirectTestOutputToFile>${maven.test.redirectTestOutputToFile}</redirectTestOutputToFile>
-            <failIfNoSpecifiedTests>${it.failIfNoSpecifiedTests}</failIfNoSpecifiedTests>
+            <failIfNoSpecifiedTests>${failsafe.failIfNoSpecifiedTests}</failIfNoSpecifiedTests>
             <forkedProcessTimeoutInSeconds>${failsafe.timeout}</forkedProcessTimeoutInSeconds>
-            <systemPropertyVariables>
-              <java.awt.headless>true</java.awt.headless>
-              <java.io.tmpdir>${java.io.tmpdir}</java.io.tmpdir>
-            </systemPropertyVariables>
           </configuration>
         </plugin>
 
