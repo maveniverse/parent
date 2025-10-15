@@ -100,8 +100,10 @@
     -->
     <maven.test.redirectTestOutputToFile>true</maven.test.redirectTestOutputToFile>
     <surefire.failIfNoSpecifiedTests>false</surefire.failIfNoSpecifiedTests>
+    <surefire.tempdir>${project.build.directory}/surefire-tmp</surefire.tempdir>
     <failsafe.timeout>600</failsafe.timeout>
     <failsafe.failIfNoSpecifiedTests>false</failsafe.failIfNoSpecifiedTests>
+    <failsafe.tempdir>${project.build.directory}/failsafe-tmp</failsafe.tempdir>
 
     <!--
     Compiler defaults: Java 8 byte code.
@@ -372,6 +374,7 @@
             <runOrder>alphabetical</runOrder>
             <redirectTestOutputToFile>${maven.test.redirectTestOutputToFile}</redirectTestOutputToFile>
             <failIfNoSpecifiedTests>${surefire.failIfNoSpecifiedTests}</failIfNoSpecifiedTests>
+            <argLine>-Djava.io.tmpdir=${surefire.tempdir}</argLine>
           </configuration>
         </plugin>
 
@@ -386,6 +389,7 @@
             <redirectTestOutputToFile>${maven.test.redirectTestOutputToFile}</redirectTestOutputToFile>
             <failIfNoSpecifiedTests>${failsafe.failIfNoSpecifiedTests}</failIfNoSpecifiedTests>
             <forkedProcessTimeoutInSeconds>${failsafe.timeout}</forkedProcessTimeoutInSeconds>
+            <argLine>-Djava.io.tmpdir=${failsafe.tempdir}</argLine>
           </configuration>
         </plugin>
 
@@ -559,6 +563,24 @@
       <plugin>
         <groupId>org.gaul</groupId>
         <artifactId>modernizer-maven-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <executions>
+          <execution>
+            <goals>
+              <goal>run</goal>
+            </goals>
+            <phase>initialize</phase>
+            <configuration>
+              <target>
+                <mkdir dir="${surefire.tempdir}" />
+                <mkdir dir="${failsafe.tempdir}" />
+              </target>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
 
       <!-- Site stuff -->
