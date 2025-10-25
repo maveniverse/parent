@@ -102,7 +102,7 @@ jobs:
       - name: Maven Build
         run: ${{ inputs.maven-single }}
       - name: Upload logs
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         if: failure()
         with:
          name: ${{ github.run_number }}-build
@@ -145,7 +145,7 @@ jobs:
       - name: Maven Test
         run: ${{ inputs.maven-test }}
       - name: Upload logs
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         if: failure()
         with:
           name: ${{ github.run_number }}-test-${{ runner.os }}-${{ matrix.jdk }}-${{ matrix.distribution }}-${{ matrix.maven }}
