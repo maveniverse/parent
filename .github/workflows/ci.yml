@@ -148,7 +148,7 @@ jobs:
         uses: actions/upload-artifact@v5
         if: failure()
         with:
-          name: ${{ github.run_number }}-test-${{ runner.os }}-${{ matrix.jdk }}-${{ matrix.distribution }}-${{ matrix.maven }}
+          name: ${{ github.run_number }}-test-${{ matrix.os }}-${{ matrix.jdk }}-${{ matrix.distribution }}-${{ matrix.maven }}
           path: |
             **/target/**
 
