@@ -134,8 +134,14 @@
     <!--
     Release configuration (some are redefined by release.yml workflow)
     -->
-    <maveniverse.release.njordVersion>0.8.5</maveniverse.release.njordVersion>
+    <maveniverse.release.njordVersion>0.8.6</maveniverse.release.njordVersion>
     <maveniverse.release.pushChanges>false</maveniverse.release.pushChanges>
+    <!-- 
+    Njord configuration, https://maveniverse.eu/docs/njord/configuration/
+    -->
+    <njord.publisher>sonatype-cp</njord.publisher>
+    <njord.releaseUrl>njord:template:release-sca</njord.releaseUrl>
+    <njord.snapshotUrl>njord:template:snapshot-sca</njord.snapshotUrl>
   </properties>
 
   <dependencyManagement>
