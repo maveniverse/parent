@@ -39,6 +39,8 @@ This is how releases were done so far. You need to have the following entry in y
     </server>
 ```
 
+All [Njord related properties](https://maveniverse.eu/docs/njord/configuration/) are maintained in the `pom.xml` (no longer the need to add something in your `settings.xml`).
+
 To perform Maven release invoke:
 * `mvn release:prepare`
 * `mvn release:perform`
