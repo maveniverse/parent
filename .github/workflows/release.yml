@@ -58,6 +58,10 @@ jobs:
       - uses: actions/checkout@v6
       - uses: actions/setup-java@v5
         with:
+          # generate settings.xml with the correct values
+          server-id: sonatype-central-portal # Value of the distributionManagement/repository/id field of the pom.xml
+          server-username: MAVEN_USER # env variable for username in deploy
+          server-password: MAVEN_PASSWORD # env variable for token in deploy
           distribution: ${{ github.event.inputs.distribution }}
           java-version: ${{ github.event.inputs.java-version }}
       - uses: crazy-max/ghaction-import-gpg@v6
@@ -92,7 +96,7 @@ jobs:
           MAVEN_USER: ${{ secrets.MAVEN_USER }}
           MAVEN_PASSWORD: ${{ secrets.MAVEN_PASSWORD }}
         run: |
-          ./mvnw -V -B release:prepare release:perform -Dmaveniverse.release.pushChanges -Darguments="-Dgpg.useagent=false -Dgpg.signer=bc" -s .github/release-settings.xml -DreleaseVersion=${{ github.event.inputs.version }} -DdevelopmentVersion=${{ github.event.inputs.next-version }}
+          ./mvnw -V -B release:prepare release:perform -Dmaveniverse.release.pushChanges -Darguments="-Dgpg.useagent=false -Dgpg.signer=bc" -DreleaseVersion=${{ github.event.inputs.version }} -DdevelopmentVersion=${{ github.event.inputs.next-version }}
 
       - name: Post release
         env:

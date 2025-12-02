@@ -134,8 +134,14 @@
     <!--
     Release configuration (some are redefined by release.yml workflow)
     -->
-    <maveniverse.release.njordVersion>0.8.5</maveniverse.release.njordVersion>
+    <maveniverse.release.njordVersion>0.8.7</maveniverse.release.njordVersion>
     <maveniverse.release.pushChanges>false</maveniverse.release.pushChanges>
+    <!-- 
+    Njord configuration, https://maveniverse.eu/docs/njord/configuration/
+    -->
+    <njord.publisher>sonatype-cp</njord.publisher>
+    <njord.releaseUrl>njord:template:release-sca</njord.releaseUrl>
+    <njord.snapshotUrl>njord:template:snapshot-sca</njord.snapshotUrl>
   </properties>
 
   <dependencyManagement>
@@ -313,6 +319,8 @@
             <releaseProfiles>maveniverse-release</releaseProfiles>
             <useReleaseProfile>false</useReleaseProfile>
             <tagNameFormat>release-@{project.version}</tagNameFormat>
+            <!-- skip rebuilding the release with GitHub actions (https://github.blog/changelog/2021-02-08-github-actions-skip-pull-request-and-push-workflows-with-skip-ci/) -->
+            <scmReleaseCommitComment>@{prefix} prepare release @{releaseLabel} [skip ci]</scmReleaseCommitComment>
           </configuration>
         </plugin>
 
