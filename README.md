@@ -39,7 +39,19 @@ This is how releases were done so far. You need to have the following entry in y
     </server>
 ```
 
-All [Njord related properties](https://maveniverse.eu/docs/njord/configuration/) are maintained in the `pom.xml` (no longer the need to add something in your `settings.xml`).
+If you have multiple GPG keys make sure the proper one is used. You can bind it for example to the `maveniverse-release` profile like this
+in your `settings.xml`
+
+```xml
+    <profile>
+        <id>maveniverse-release</id>
+        <properties>
+            <!-- which GPG key to take (the one for Apache), https://maven.apache.org/plugins/maven-gpg-plugin/sign-mojo.html#keyname -->
+            <gpg.keyname><short-id></gpg.keyname>
+        </properties>
+    </profile>
+```
+
 
 To perform Maven release invoke:
 * `mvn release:prepare`
