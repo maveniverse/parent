@@ -69,7 +69,7 @@ on:
         description: The Maven version matrix as json array
         required: false
         # don't forget matrix-excludes below if changing Maven versions
-        default: '[ "3.9.11", "4.0.0-rc-4" ]'
+        default: '[ "3.9.11", "4.0.0-rc-5" ]'
         type: string
 
 concurrency: 
