@@ -56,7 +56,7 @@ on:
         description: jdk matrix as json array
         required: false
         # don't forget matrix-excludes below if changing Java versions
-        default: '[ "8", "11", "17", "21", "24" ]'
+        default: '[ "8", "11", "17", "21", "25" ]'
         type: string
 
       jdk-distribution-matrix:
