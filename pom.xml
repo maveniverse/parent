@@ -138,7 +138,7 @@
     <!--
     Release configuration (some are redefined by release.yml workflow)
     -->
-    <maveniverse.release.njordVersion>0.8.7</maveniverse.release.njordVersion>
+    <maveniverse.release.njordVersion>0.9.2</maveniverse.release.njordVersion>
     <maveniverse.release.pushChanges>false</maveniverse.release.pushChanges>
     <!-- 
     Njord configuration, https://maveniverse.eu/docs/njord/configuration/
@@ -419,7 +419,7 @@
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>exec-maven-plugin</artifactId>
-          <version>3.6.2</version>
+          <version>3.6.3</version>
         </plugin>
 
         <plugin>
