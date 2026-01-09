@@ -93,7 +93,7 @@
     Source headers.
     -->
     <mycila.licenseHeader>https://raw.githubusercontent.com/maveniverse/parent/master/license-header-epl2.txt</mycila.licenseHeader>
-    <mycila.licenseYear>${project.inceptionYear}-2025</mycila.licenseYear>
+    <mycila.licenseYear>${project.inceptionYear}-2026</mycila.licenseYear>
 
     <!--
     Test defaults.
