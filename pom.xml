@@ -140,13 +140,13 @@
     -->
     <maveniverse.release.njordVersion>0.9.2</maveniverse.release.njordVersion>
     <maveniverse.release.pushChanges>false</maveniverse.release.pushChanges>
-    <!-- 
+    <maveniverse.release.njord.autoPublish>true</maveniverse.release.njord.autoPublish>
+    <!--
     Njord configuration, https://maveniverse.eu/docs/njord/configuration/
     -->
     <njord.publisher>sonatype-cp</njord.publisher>
     <njord.releaseUrl>njord:template:release-sca</njord.releaseUrl>
     <njord.snapshotUrl>njord:template:snapshot-sca</njord.snapshotUrl>
-    <njord.autoPublish>true</njord.autoPublish>
   </properties>
 
   <dependencyManagement>
@@ -312,7 +312,7 @@
             <pushChanges>${maveniverse.release.pushChanges}</pushChanges>
             <autoVersionSubmodules>true</autoVersionSubmodules>
             <goals>deploy</goals>
-            <arguments>-Dtest=void -Dit=void -Dnjord.autoPublish=${njord.autoPublish}</arguments>
+            <arguments>-Dtest=void -Dit=void -Dnjord.autoPublish=${maveniverse.release.njord.autoPublish}</arguments>
             <mavenExecutorId>forked-path</mavenExecutorId>
             <releaseProfiles>maveniverse-release</releaseProfiles>
             <useReleaseProfile>false</useReleaseProfile>
