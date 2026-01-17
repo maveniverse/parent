@@ -121,8 +121,8 @@ jobs:
         if: (inputs.needs-ipfs && inputs.needs-ipfs-daemon)
         shell: bash
         run: |
-          ipfs init
-          ipfs daemon --enable-pubsub-experiment --enable-namesys-pubsub
+          ipfs init --profile server
+          ipfs daemon --enable-pubsub-experiment --enable-namesys-pubsub &
       - name: Maven Build
         run: ${{ inputs.maven-single }}
       - name: Upload logs
