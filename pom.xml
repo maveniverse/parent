@@ -141,7 +141,7 @@
     <!--
     Release configuration (some are redefined by release.yml workflow)
     -->
-    <maveniverse.release.njordVersion>0.9.3</maveniverse.release.njordVersion>
+    <maveniverse.release.njordVersion>0.9.4</maveniverse.release.njordVersion>
     <maveniverse.release.pushChanges>false</maveniverse.release.pushChanges>
     <maveniverse.release.njord.autoPublish>true</maveniverse.release.njord.autoPublish>
     <!--
@@ -334,7 +334,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-resources-plugin</artifactId>
-          <version>3.4.0</version>
+          <version>3.5.0</version>
           <configuration>
             <propertiesEncoding>ISO-8859-1</propertiesEncoding>
           </configuration>
@@ -355,7 +355,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-shade-plugin</artifactId>
-          <version>3.6.1</version>
+          <version>3.6.2</version>
         </plugin>
 
         <plugin>
@@ -376,7 +376,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-surefire-plugin</artifactId>
-          <version>3.5.4</version>
+          <version>3.5.5</version>
           <configuration>
             <forkCount>1</forkCount>
             <reuseForks>true</reuseForks>
@@ -390,7 +390,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-failsafe-plugin</artifactId>
-          <version>3.5.4</version>
+          <version>3.5.5</version>
           <configuration>
             <forkCount>1</forkCount>
             <reuseForks>false</reuseForks>
@@ -435,7 +435,7 @@
         <plugin>
           <groupId>com.diffplug.spotless</groupId>
           <artifactId>spotless-maven-plugin</artifactId>
-          <version>3.2.1</version>
+          <version>3.3.0</version>
           <configuration>
             <java>
               <palantirJavaFormat />
