@@ -64,7 +64,7 @@ jobs:
           server-password: MAVEN_PASSWORD # env variable for token in deploy
           distribution: ${{ github.event.inputs.distribution }}
           java-version: ${{ github.event.inputs.java-version }}
-      - uses: crazy-max/ghaction-import-gpg@v6
+      - uses: crazy-max/ghaction-import-gpg@v7
         with:
           gpg_private_key: ${{ secrets.GPG_SIGNING_KEY }}
           passphrase: ${{ secrets.GPG_PASSPHRASE }}
