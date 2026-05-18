@@ -142,8 +142,10 @@
     Release configuration (some are redefined by release.yml workflow)
     -->
     <maveniverse.release.njordVersion>0.9.6</maveniverse.release.njordVersion>
-    <maveniverse.release.pushChanges>false</maveniverse.release.pushChanges>
+    <maveniverse.release.pushChanges>true</maveniverse.release.pushChanges>
     <maveniverse.release.njord.autoPublish>true</maveniverse.release.njord.autoPublish>
+    <maveniverse.release.njord.publishingType>automatic</maveniverse.release.njord.publishingType>
+    <maveniverse.release.njord.waitForStates>true</maveniverse.release.njord.waitForStates>
     <!--
     Njord configuration, https://maveniverse.eu/docs/njord/configuration/
     -->
@@ -315,7 +317,7 @@
             <pushChanges>${maveniverse.release.pushChanges}</pushChanges>
             <autoVersionSubmodules>true</autoVersionSubmodules>
             <goals>deploy</goals>
-            <arguments>-Dtest=void -Dit=void -Dnjord.autoPublish=${maveniverse.release.njord.autoPublish}</arguments>
+            <arguments>-Dtest=void -Dit=void -Dnjord.autoPublish=${maveniverse.release.njord.autoPublish} -Dnjord.publishingType=${maveniverse.release.njord.publishingType} -Dnjord.waitForStates=${maveniverse.release.njord.waitForStates}</arguments>
             <mavenExecutorId>forked-path</mavenExecutorId>
             <releaseProfiles>maveniverse-release</releaseProfiles>
             <useReleaseProfile>false</useReleaseProfile>
