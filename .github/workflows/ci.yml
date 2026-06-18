@@ -95,7 +95,7 @@ jobs:
     if: inputs.maven-single-run
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           persist-credentials: false
       - name: Setup Java
@@ -151,7 +151,7 @@ jobs:
             maven: 4.0.0-rc-5
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           persist-credentials: false
       - name: Setup Java
