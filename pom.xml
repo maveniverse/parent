@@ -131,7 +131,7 @@
     Some notable versions.
     -->
     <version.modernizer>3.5.0</version.modernizer>
-    <version.sisu>1.0.1</version.sisu>
+    <version.sisu>1.1.0</version.sisu>
     <version.maven-plugin-tools>3.15.2</version.maven-plugin-tools>
 
     <!--
@@ -440,7 +440,7 @@
         <plugin>
           <groupId>com.diffplug.spotless</groupId>
           <artifactId>spotless-maven-plugin</artifactId>
-          <version>3.8.0</version>
+          <version>3.9.0</version>
           <configuration>
             <java>
               <palantirJavaFormat />
