@@ -142,6 +142,9 @@ jobs:
   test:
     name: Test
     runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        shell: bash
     needs: build
     if: (!cancelled()) && inputs.maven-test-run && ( !inputs.maven-single-run || needs.build.result == 'success' )
     strategy:
