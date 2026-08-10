@@ -169,13 +169,14 @@ jobs:
         uses: actions/setup-java@v5.7.0
         with:
           java-version: ${{ matrix.jdk }}
-          distribution: 'temurin'
+          distribution: ${{ matrix.distribution }}
       - name: Cache
         uses: actions/cache@v6
         with:
           path: ~/.m2/repository
           key: mvn-${{ hashFiles('**/pom.xml') }}-${{ github.sha }}
           fail-on-cache-miss: true
+          enableCrossOsArchive: true
       - run: ./mvnw -N -Dmaven=${{ matrix.maven }} wrapper:wrapper
       - name: Maven Test
         run: ${{ inputs.maven-test }}
