@@ -176,6 +176,7 @@ jobs:
           path: ~/.m2/repository
           key: mvn-${{ hashFiles('**/pom.xml') }}-${{ github.sha }}
           fail-on-cache-miss: true
+          enableCrossOsArchive: true
       - run: ./mvnw -N -Dmaven=${{ matrix.maven }} wrapper:wrapper
       - name: Maven Test
         run: ${{ inputs.maven-test }}
