@@ -132,6 +132,12 @@ jobs:
           ipfs daemon --enable-pubsub-experiment --enable-namesys-pubsub &
       - name: Maven Build
         run: ${{ inputs.maven-single }}
+      - name: Upload Maven local repository
+        uses: actions/upload-artifact@v7
+        with:
+          name: build-local-repository
+          include-hidden-files: true
+          path: ~/.m2/repository/
       - name: Upload logs
         uses: actions/upload-artifact@v7
         if: failure()
@@ -170,13 +176,11 @@ jobs:
         with:
           java-version: ${{ matrix.jdk }}
           distribution: ${{ matrix.distribution }}
-      - name: Cache
-        uses: actions/cache@v6
+      - name: Download Maven local repository
+        uses: actions/download-artifact@v8
         with:
-          path: ~/.m2/repository
-          key: mvn-${{ hashFiles('**/pom.xml') }}-${{ github.sha }}
-          fail-on-cache-miss: true
-          enableCrossOsArchive: true
+          name: build-local-repository
+          path: ~/.m2/repository/
       - run: ./mvnw -N -Dmaven=${{ matrix.maven }} wrapper:wrapper
       - name: Maven Test
         run: ${{ inputs.maven-test }}
