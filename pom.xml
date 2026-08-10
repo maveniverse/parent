@@ -15,7 +15,7 @@
   <groupId>eu.maveniverse.maven.parent</groupId>
   <artifactId>parent</artifactId>
 
-  <version>60-SNAPSHOT</version>
+  <version>60</version>
   <packaging>pom</packaging>
   <name>${project.groupId}:${project.artifactId}</name>
 
@@ -46,7 +46,7 @@
   <scm>
     <connection>scm:git:git@github.com:maveniverse/parent.git</connection>
     <developerConnection>scm:git:git@github.com:maveniverse/parent.git</developerConnection>
-    <tag>HEAD</tag>
+    <tag>release-60</tag>
     <url>https://github.com/maveniverse/parent</url>
   </scm>
 
@@ -87,7 +87,7 @@
     <!--
     Build timestamp.
     -->
-    <project.build.outputTimestamp>2026-08-04T11:17:36Z</project.build.outputTimestamp>
+    <project.build.outputTimestamp>2026-08-10T17:53:26Z</project.build.outputTimestamp>
 
     <!--
     Source headers.
