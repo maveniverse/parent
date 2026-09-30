@@ -120,7 +120,7 @@ jobs:
             mvn-
       - name: IPFS Download
         if: (inputs.needs-ipfs)
-        uses: ipfs/download-ipfs-distribution-action@v1
+        uses: ipfs/download-ipfs-distribution-action@v2
         with:
           name: kubo
           version: ${{ inputs.kubo-version }}
