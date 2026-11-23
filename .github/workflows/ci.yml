@@ -62,7 +62,7 @@ on:
         description: jdk matrix as json array
         required: false
         # don't forget matrix-excludes below if changing Java versions
-        default: '[ "8", "11", "17", "21", "25" ]'
+        default: '[ "8", "17", "21", "25" ]'
         type: string
 
       jdk-distribution-matrix:
@@ -75,7 +75,7 @@ on:
         description: The Maven version matrix as json array
         required: false
         # don't forget matrix-excludes below if changing Maven versions
-        default: '[ "3.9.16", "3.10.0", "4.0.0-rc-7" ]'
+        default: '[ "3.9.16", "3.10.2", "4.0.0-rc-7" ]'
         type: string
 
       needs-ipfs:
